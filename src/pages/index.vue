@@ -1,30 +1,32 @@
 <template>
-  <div>
-    后台首页
+    <div>
+        后台首页 
+        
+        {{ $store.state.user.username }}
 
-    {{ $store.state.user.username }}
-
-    <el-button @click="handleLogout">退出登录</el-button>
-  </div>
+        <el-button @click="handleLogout">退出登录</el-button>
+    </div>
 </template>
 <script setup>
-import { logout } from "~/api/manager";
-import { showModal, toast } from "~/composables/util";
-import { useRouter } from "vue-router";
-import { useStore } from "vuex";
+    import { logout } from "~/api/manager"
+    import { showModal,toast } from "~/composables/util"
+    import { useRouter } from "vue-router"
+    import { useStore } from "vuex"
+    
+    const router = useRouter()
+    const store = useStore()
 
-const router = useRouter();
-const store = useStore();
-
-function handleLogout() {
-  showModal("是否要退出登录？").then((res) => {
-    logout().finally(() => {
-      store.dispatch("logout");
-      // 跳转回登录页
-      router.push("/login");
-      // 提示退出登录成功
-      toast("退出登录成功");
-    });
-  });
-}
+    function handleLogout(){
+        showModal("是否要退出登录？").then(res=>{
+            logout()
+            .finally(()=>{
+               
+                store.dispatch("logout")
+                // 跳转回登录页
+                router.push("/login")
+                // 提示退出登录成功
+                toast("退出登录成功")
+            })
+        })
+    }
 </script>
