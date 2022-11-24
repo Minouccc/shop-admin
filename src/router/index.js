@@ -5,6 +5,7 @@ import Index from "~/pages/index.vue";
 import Login from "~/pages/login.vue";
 import NotFound from "~/pages/404.vue";
 import GoodList from "~/pages/goods/list.vue";
+import ImageList from "~/pages/image/list.vue";
 
 // 默认路由，所有用户共享
 const routes = [
@@ -43,6 +44,14 @@ const asyncRoutes = [
     component: GoodList,
     meta: {
       title: "商品管理",
+    },
+  },
+  {
+    path: "/image/list",
+    name: "/image/list",
+    component: ImageList,
+    meta: {
+      title: "图库列表",
     },
   },
 ];
